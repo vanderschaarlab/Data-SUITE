@@ -20,7 +20,7 @@ For more details, please read our [ICML 2022 paper](https://arxiv.org/abs/2202.0
 
 ## Installation
 1. Clone the repository
-2. Create a new virtual environment with Python 3.7. e.g:
+2. Create a new virtual environment with Python 3.7, 3.8 or 3.9. e.g:
 ```shell
     virtualenv ds_env
 ```
@@ -33,6 +33,30 @@ pip install -r requirements.txt
 
  ```shell
  pip install --no-deps -r requirements-no-deps.txt
+ ```
+
+**NOTE:** It is now also possible to also install this repo from source or pypi. This is done in the following ways.
+
+1. From inside the repo you can run:
+ ```shell
+pip install .
+ ```
+or from anywhere run
+
+ ```shell
+pip install data_suite
+ ```
+
+This installs the minimum number of packages to run `data_suite`.
+
+2. If you wish to run benchmarks, please install with the benchmarks extra with:
+ ```shell
+pip install data_suite[benchmarks]
+ ```
+
+ 3. If you wish to run contribute and adhere to the coding style, please install with the contribute extra with:
+ ```shell
+pip install data_suite[contribute]
  ```
 
 

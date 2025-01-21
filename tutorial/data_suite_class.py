@@ -4,10 +4,9 @@ import sys
 
 import numpy as np
 
-from src.models.conformal import conformal_class
-from src.models.copula import fit_sample_copula
-from src.models.representation import representation_class_based
-from src.utils.helpers import *
+from data_suite.models.conformal import conformal_class
+from data_suite.models.copula import fit_sample_copula
+from data_suite.models.representation import representation_class_based
 
 module_path = os.path.abspath(os.path.join(".."))
 if module_path not in sys.path:
@@ -72,7 +71,7 @@ class Data_SUITE:
         Fits and samples a copula
         """
 
-        if self.copula_type != None:
+        if self.copula_type is not None:
             self.copula_samples = fit_sample_copula(
                 clean_corpus=self.train,
                 copula=self.copula_type,
@@ -86,7 +85,7 @@ class Data_SUITE:
         Fits a representer
         """
 
-        if self.rep_dim == None:
+        if self.rep_dim is None:
             self.rep_dim = int(np.ceil(self.train.shape[1] / 2))
 
         (
@@ -140,7 +139,7 @@ class Data_SUITE:
 
         for idx, feat in enumerate(self.suspect_features):
             feat = int(feat)
-            dim = self.pcs_copula.shape[1]
+            self.pcs_copula.shape[1]
             conf = self.conformal_predictors[idx]
             self.conformal_dict[feat] = conf.predict(
                 x_test=self.pcs_test,

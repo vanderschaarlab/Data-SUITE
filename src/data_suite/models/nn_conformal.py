@@ -98,7 +98,7 @@ def train_loop(
     batch_size,
     optimizer,
     cnt=0,
-    best_cnt=np.Inf,
+    best_cnt=np.inf,
 ):
     """
     > The function defines a training loop for the model
@@ -147,6 +147,7 @@ def train_loop(
 # Deep conditional mean regression
 # Minimizing MSE loss
 ###############################################################################
+
 
 # Define the network
 class mse_model(nn.Module):

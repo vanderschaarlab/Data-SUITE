@@ -8,7 +8,8 @@ from sklearn.model_selection import train_test_split
 
 def generate_synthetic_large(num_samples=1000):
     """
-    > This function generates a random multivariate normal distribution with the given mean and covariance matrix
+    > This function generates a random multivariate normal distribution with
+    the given mean and covariance matrix
 
     Args:
       num_samples: The number of samples to generate. Defaults to 1000
@@ -40,7 +41,8 @@ def generate_synthetic_large(num_samples=1000):
 
 def generate_synthetic_small(num_samples=1000):
     """
-    > This function generates a random sample of data from a multivariate normal distribution with a specified mean
+    > This function generates a random sample of data from a multivariate normal
+    distribution with a specified mean
     and covariance matrix
 
     Args:

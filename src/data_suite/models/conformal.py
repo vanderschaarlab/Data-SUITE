@@ -16,7 +16,7 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.neural_network import MLPRegressor
 from sklearn.tree import DecisionTreeRegressor
 
-from src.models import nn_conformal as nnc
+from data_suite.models import nn_conformal as nnc
 
 # Parameters if using a pytorch NN for the base learner
 # desired miscoverage level
@@ -79,7 +79,8 @@ class conformal_class:
 
         input_dim = input_dim
         if not normalize:
-            underlying_model = model_dict[base_name]
+            # TODO: define model_dict here
+            underlying_model = model_dict[base_name]  # noqa F821
             nc = RegressorNc(
                 underlying_model,
                 conformity_dict[conformity_score],

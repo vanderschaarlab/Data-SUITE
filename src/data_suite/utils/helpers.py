@@ -40,7 +40,7 @@ def inlier_outlier_dicts(conformal_dict, suspect_features):
 
         outlier_df = mydf[mydf["outlier"]]
 
-        inlier_df = mydf[mydf["outlier"] == False]
+        inlier_df = mydf[mydf["outlier"] is False]
 
         outlier_ids = outlier_df.index.values
         inlier_ids = inlier_df.index.values

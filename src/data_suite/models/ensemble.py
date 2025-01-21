@@ -5,7 +5,7 @@ import torch
 import torch.optim as optim
 from torch.utils.data import DataLoader
 
-from src.models.base_model import MyDataset, Net, benchmark_trainer
+from data_suite.models.base_model import MyDataset, Net, benchmark_trainer
 
 torch.manual_seed(42)
 
@@ -74,7 +74,7 @@ class ensemble:
                 if runs > 2:
                     break
 
-                if all_equal2(preds) == False:
+                if all_equal2(preds) is False:
                     self.ensemble[i] = self.tr
                     break
 

@@ -1,4 +1,5 @@
 import logging
+import random
 
 import numpy as np
 import pandas as pd
@@ -11,7 +12,7 @@ from sklearn.neighbors import KNeighborsRegressor
 from tqdm import tqdm
 from uq360.algorithms.quantile_regression import QuantileRegression
 
-from src.utils.uncertainty_metrics import (
+from data_suite.utils.uncertainty_metrics import (
     compute_uncertainty_metrics,
     process_results,
     test_ood,
@@ -146,7 +147,7 @@ def comparison_methods(
 
     if model_type == "conformal":
         # uncertainty_score = conformal(x_train, y_train, x_test, y_test, ids)
-        from src.models.conformal import conformal_class
+        from data_suite.models.conformal import conformal_class
 
         conf = conformal_class(seed=seed)
         conf.fit(x_train, y_train)
@@ -166,7 +167,7 @@ def comparison_methods(
         )
 
     if model_type == "mcd":
-        from src.models.mcd import mc_dropout
+        from data_suite.models.mcd import mc_dropout
 
         mcd = mc_dropout(epochs=10, lr=0.01, batch_size=5, device=device)
         mcd.fit(x_train=x_train, y_train=y_train)
@@ -178,7 +179,7 @@ def comparison_methods(
 
     if model_type == "ensemble":
 
-        from src.models.ensemble import ensemble
+        from data_suite.models.ensemble import ensemble
 
         ens = ensemble(
             epochs=10,
@@ -381,7 +382,7 @@ def uncertainty_benchmark(
         )  # upper bound of the prediction interval
 
     if model_type == "mcd":
-        from src.models.mcd import mc_dropout
+        from data_suite.models.mcd import mc_dropout
 
         mcd = mc_dropout(epochs=20, lr=0.01, batch_size=5, device=device)
         mcd.fit(x_train=x_train, y_train=y_train)
@@ -398,7 +399,7 @@ def uncertainty_benchmark(
         ub = y_pred + (2 * sigma)  # upper bound of the prediction interval
 
     if model_type == "ensemble":
-        from src.models.ensemble import ensemble
+        from data_suite.models.ensemble import ensemble
 
         ens = ensemble(
             epochs=20,
@@ -420,7 +421,7 @@ def uncertainty_benchmark(
         ub = y_pred + (2 * sigma)  # upper bound of the prediction interval
 
     if model_type == "conformal":
-        from src.models.conformal import conformal_class
+        from data_suite.models.conformal import conformal_class
 
         conf = conformal_class()
         conf.fit(x_train, y_train)

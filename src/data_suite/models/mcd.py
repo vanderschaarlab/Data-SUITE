@@ -4,7 +4,7 @@ import torch
 import torch.optim as optim
 from torch.utils.data import DataLoader
 
-from src.models.base_model import MyDataset, Net, benchmark_trainer
+from data_suite.models.base_model import MyDataset, Net, benchmark_trainer
 
 torch.manual_seed(42)
 
@@ -67,7 +67,7 @@ class mc_dropout:
             if runs > 3:
                 break
 
-            if all_equal2(preds) == False:
+            if all_equal2(preds) is False:
                 break
 
     def predict(self, x_test, y_test, mc_samples=3):
