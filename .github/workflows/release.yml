@@ -83,4 +83,4 @@ jobs:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         shell: cmd  # Make sure we run .bat with cmd
-        run: ./.github/workflows/scripts/release_windows.bat
+        run: .\.github\workflows\scripts\release_windows.bat
