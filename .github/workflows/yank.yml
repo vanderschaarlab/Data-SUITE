@@ -1,0 +1,41 @@
+name: Package Yank
+
+on:
+  delete:
+    tags:
+      - 'v*'
+
+jobs:
+  yank_release:
+    name: Yank PyPI Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: pip install requests
+
+      - name: Extract Version from Tag
+        id: extract_version
+        run: |
+          # The deleted tag is available in the GITHUB_REF environment variable
+          # Example format: refs/tags/v1.2.3
+          TAG_REF="${GITHUB_REF}"
+          VERSION="${TAG_REF##*/}"  # Extract 'v1.2.3' from 'refs/tags/v1.2.3'
+          VERSION="${VERSION#v}"     # Remove the leading 'v' if present
+          echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Yank Release on PyPI
+        env:
+          PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+          PACKAGE_NAME: your-package-name  # Replace with your actual package name
+          VERSION: ${{ steps.extract_version.outputs.VERSION }}
+        run: |
+          python .github/workflows/scripts/yank_release.py
